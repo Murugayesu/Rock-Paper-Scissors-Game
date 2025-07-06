@@ -86,6 +86,15 @@ function animateResult(result) {
   setTimeout(() => resultTextElem.style.transform = "scale(1)", 300);
 }
 
+function preloadImages() {
+  const allImages = [...Object.values(imgMap), ...Object.values(img1Map)];
+  allImages.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
+}
+preloadImages();
+
 buttons.forEach(function(button) {
   button.addEventListener('click', function() {
     stopLoadingAnimation();
