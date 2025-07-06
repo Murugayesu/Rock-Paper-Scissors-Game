@@ -9,6 +9,11 @@ const computerChoiceImg = document.getElementById('Computer-choice-image');
 
 const choices = ['rock', 'paper', 'scissors'];
 const imgMap = {
+  rock: 'src/RocK.jpg',
+  paper: 'src/PapeR.jpg',
+  scissors: 'src/ScissorS.jpg'
+};
+const img1Map = {
   rock: 'src/Rock.png',
   paper: 'src/Paper.png',
   scissors: 'src/Scissors.png'
@@ -19,15 +24,17 @@ let computerScore = 0;
 
 let loadingInterval;
 let loadingIndex = 0;
+const originalTitle = document.title;
 
 function startLoadingAnimation() {
+  document.title = "🚀 Loading... | " + originalTitle;
   loadingIndex = 0;
   if (loadingInterval) clearInterval(loadingInterval);
   loadingInterval = setInterval(() => {
     const choice = choices[loadingIndex % choices.length];
     playerChoiceImg.src = imgMap[choice];
     playerChoiceImg.alt = "Loading...";
-    computerChoiceImg.src = imgMap[choice];
+    computerChoiceImg.src = img1Map[choice];
     computerChoiceImg.alt = "Loading...";
     loadingIndex++;
   }, 400);
@@ -35,8 +42,8 @@ function startLoadingAnimation() {
 
 function stopLoadingAnimation() {
   if (loadingInterval) clearInterval(loadingInterval);
+  document.title = originalTitle;
 }
-
 
 function getComputerChoice() {
   const idx = Math.floor(Math.random() * choices.length);
@@ -46,7 +53,7 @@ function getComputerChoice() {
 function updateImages(playerChoice, computerChoice) {
   playerChoiceImg.src = imgMap[playerChoice];
   playerChoiceImg.alt = playerChoice;
-  computerChoiceImg.src = imgMap[computerChoice];
+  computerChoiceImg.src = img1Map[computerChoice];
   computerChoiceImg.alt = computerChoice;
 }
 
@@ -90,9 +97,7 @@ buttons.forEach(function(button) {
     updateScores();
     animateResult(result);
 
-    
+
     setTimeout(startLoadingAnimation, 1200);
   });
 });
-
-startLoadingAnimation();
