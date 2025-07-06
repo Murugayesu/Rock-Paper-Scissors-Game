@@ -27,7 +27,7 @@ let loadingIndex = 0;
 const originalTitle = document.title;
 
 function startLoadingAnimation() {
-  document.title = "🚀 Loading... | " + originalTitle;
+  // document.title = "🚀 Loading... | " + originalTitle;
   loadingIndex = 0;
   if (loadingInterval) clearInterval(loadingInterval);
   loadingInterval = setInterval(() => {
